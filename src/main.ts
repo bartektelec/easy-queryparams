@@ -33,10 +33,17 @@ const parse = (input: string): Record<string, string | string[]> => {
             string
         ][];
 
-    const object = [decodeURI, splitPairs, Object.fromEntries].reduce(
-        reduceFn,
-        input
-    );
+    const parseNums = (
+        input: [string, string][]
+    ): [string, string | number][] =>
+        input.map(([key, value]) => [key, Number(value) || value]);
+
+    const object = [
+        decodeURI,
+        splitPairs,
+        parseNums,
+        Object.fromEntries,
+    ].reduce(reduceFn, input);
 
     return object as unknown as Record<string, string | string[]>;
 };
