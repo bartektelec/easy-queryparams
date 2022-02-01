@@ -61,6 +61,10 @@ This method takes a query string as a parameter and returns an object. All value
     */
 ```
 
+## TypeScript Support
+
+You can import the `.ts` files from `easy-queryparams/src`, however you will be forced to explicitly assert a type to your object when using the `parse` method, just like you would do with `JSON.parse`.
+
 ## Licence
 
 [MIT](https://opensource.org/licenses/MIT)

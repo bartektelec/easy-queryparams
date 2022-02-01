@@ -1,4 +1,4 @@
-import { parse } from '../src/main';
+import { parse } from '../src';
 
 describe('parse', () => {
     it('should be able to convert URI to object', () => {

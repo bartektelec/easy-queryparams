@@ -1,4 +1,4 @@
-import { stringify } from '../src/main';
+import { stringify } from '../src';
 
 describe('stringify', () => {
     it('should take an object and convert it to a string', () => {
