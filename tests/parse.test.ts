@@ -13,6 +13,18 @@ describe('parse', () => {
         expect(parse(input).age).toEqual(30);
     });
 
+    it('should convert to an array if possible', () => {
+        const input = 'name=Adam&children=John%2CSarah%2CDavid';
+
+        expect(parse(input).children).toEqual(['John', 'Sarah', 'David']);
+    });
+
+    it('should convert numbers inside of an array if possible', () => {
+        const input = 'childAges=20%2Cabc%2C40%2C50';
+
+        expect(parse(input).childAges).toEqual([20, 'abc', 40, 50]);
+    });
+
     it('should be able to convert empty string to empty object', () => {
         const input = '';
 

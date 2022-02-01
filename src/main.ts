@@ -33,15 +33,32 @@ const parse = (input: string): Record<string, string | string[]> => {
             string
         ][];
 
+    const parseToASCII = (input: [string, string][]): [string, string][] =>
+        input.map(([key, value]) => [
+            key,
+            value ? decodeURIComponent(value) : value,
+        ]);
+
     const parseNums = (
         input: [string, string][]
     ): [string, string | number][] =>
         input.map(([key, value]) => [key, Number(value) || value]);
 
+    const parseArrays = (
+        input: [string, string | number][]
+    ): [string, string | number | (string | number)[]][] =>
+        input.map(([key, value]) => {
+            const tempArr = String(value).split(',');
+            if (tempArr.length > 1)
+                return [key, tempArr.map((item) => Number(item) || item)];
+            return [key, value];
+        });
+
     const object = [
-        decodeURI,
         splitPairs,
+        parseToASCII,
         parseNums,
+        parseArrays,
         Object.fromEntries,
     ].reduce(reduceFn, input);
 
