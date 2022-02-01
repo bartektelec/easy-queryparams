@@ -1,36 +1,38 @@
 {
-  "name": "easy-querystring",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "test:watch": "jest --watchAll"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bartektelec/querystring.git"
-  },
-  "keywords": [
-    "query",
-    "string",
-    "query-string",
-    "url",
-    "parse",
-    "stringify"
-  ],
-  "author": "bartektelec",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/bartektelec/querystring/issues"
-  },
-  "homepage": "https://github.com/bartektelec/querystring#readme",
-  "devDependencies": {
-    "@semantic-release/git": "^10.0.1",
-    "@types/jest": "^27.4.0",
-    "jest": "^27.4.7",
-    "semantic-release": "^19.0.2",
-    "ts-jest": "^27.1.3",
-    "typescript": "^4.5.5"
-  }
+    "name": "easy-queryparams",
+    "version": "0.0.0-development",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest",
+        "test:watch": "jest --watchAll",
+        "semantic-release": "semantic-release",
+        "build": "tsc"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/bartektelec/querystring.git"
+    },
+    "keywords": [
+        "query",
+        "string",
+        "query-string",
+        "url",
+        "parse",
+        "stringify"
+    ],
+    "author": "bartektelec",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/bartektelec/querystring/issues"
+    },
+    "homepage": "https://github.com/bartektelec/querystring#readme",
+    "devDependencies": {
+        "@semantic-release/git": "^10.0.1",
+        "@types/jest": "^27.4.0",
+        "jest": "^27.4.7",
+        "semantic-release": "^19.0.2",
+        "ts-jest": "^27.1.3",
+        "typescript": "^4.5.5"
+    }
 }
