@@ -21,11 +21,24 @@ const stringify = (input: Record<string, unknown>): string => {
         rejectNullish,
         buildKeyValString,
         concatStrings,
-    ].reduce(reduceFn, input) as unknown as string;
+    ].reduce(reduceFn, input);
 
-    return querystring;
+    return querystring as unknown as string;
 };
 
-const main = { stringify };
+const parse = (input: string): Record<string, string | string[]> => {
+    const splitPairs = (input: string): [string, string][] =>
+        input.split('&').map((keyval) => keyval.split('=')) as [
+            string,
+            string
+        ][];
 
-export { main as default, stringify };
+    const object = [decodeURI, splitPairs, Object.fromEntries].reduce(
+        reduceFn,
+        input
+    );
+
+    return object as unknown as Record<string, string | string[]>;
+};
+
+export { stringify, parse };
