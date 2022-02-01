@@ -4,6 +4,16 @@ This is a package that let's you easy convert an object to a querystring, or par
 
 The package exposes two methods: `stringify` and `parse`.
 
+## Getting started
+- Install this package
+```bash
+$npm install easy-queryparams
+```
+- Import the methods in your project
+```ts
+import * as qs from 'easy-querystring'
+```
+
 ## Examples
 
 ### Stringify method
@@ -11,6 +21,8 @@ The package exposes two methods: `stringify` and `parse`.
 This method takes an object as a parameter and converts it to a string, omitting all nullish valued properties.
 
 ```ts
+    import {stringify} from 'easy-queryparams';
+
     const filters = {
         minAge: 20,
         maxAge: 50,
@@ -30,13 +42,15 @@ This method takes an object as a parameter and converts it to a string, omitting
 This method takes a query string as a parameter and returns an object. All values that are separated with commas will be converted to an array, and all parsable numbers will return a number type.
 
 ```ts
+    import {parse} from 'easy-queryparams';
+
     const queryString = "pickedNumbers=1%2C30%2Cabcd%2C50%2C200&location=New%20York";
 
     const filters = parse(queryString);
 
     /*
     filters = {
-        pickedNumbers: [1, 30,'abcd, 50, 200],
+        pickedNumbers: [1, 30, 'abcd', 50, 200],
         location: 'New York'
     }
     */
