@@ -1,7 +1,7 @@
 {
     "name": "easy-queryparams",
     "version": "0.0.0-development",
-    "description": "",
+    "description": "utility methods for easier parsing and stringifying of query strings and params",
     "main": "index.js",
     "scripts": {
         "test": "jest",
@@ -11,7 +11,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/bartektelec/querystring.git"
+        "url": "https://github.com/bartektelec/easy-querystring.git"
     },
     "keywords": [
         "query",
@@ -24,9 +24,9 @@
     "author": "bartektelec",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/bartektelec/querystring/issues"
+        "url": "https://github.com/bartektelec/easy-querystring/issues"
     },
-    "homepage": "https://github.com/bartektelec/querystring#readme",
+    "homepage": "https://github.com/bartektelec/easy-querystring#readme",
     "devDependencies": {
         "@semantic-release/git": "^10.0.1",
         "@types/jest": "^27.4.0",
