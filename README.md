@@ -5,6 +5,7 @@
 [![weekly download count](https://img.shields.io/npm/dm/easy-queryparams)](https://npmcharts.com/compare/easy-queryparams?interval=30&minimal=true) ![primary language procentage](https://img.shields.io/github/languages/top/bartektelec/querystring) ![workflow build status](https://img.shields.io/github/workflow/status/bartektelec/querystring/Release%20npm%20package) ![last commit badge](https://img.shields.io/github/last-commit/bartektelec/querystring)
 
 </div>
+
 This is a package that let's you easy convert an object to a querystring, or parse it the other way around. It's main difference from JS `URLSearchParams` is that it by default avoids params with nullish values.
 
 The package exposes two methods: `stringify` and `parse`.
