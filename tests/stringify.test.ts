@@ -31,9 +31,11 @@ describe('stringify', () => {
             age: 69,
             job: undefined,
             hair: 0,
+            city: '',
+            isActive: true,
         };
 
-        const result = 'name=Adam&age=69&hair=0';
+        const result = 'name=Adam&age=69&hair=0&isActive=true';
 
         expect(stringify(input)).toEqual(result);
     });

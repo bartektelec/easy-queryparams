@@ -7,6 +7,12 @@ describe('parse', () => {
         expect(parse(input).location).toEqual('New York');
     });
 
+    it('should set empty params as truthy bool', () => {
+        const input = 'location=New%20York&isActive&age=30';
+
+        expect(parse(input).isActive).toBeTruthy();
+    });
+
     it('should convert to a number if possible', () => {
         const input = 'location=New%20York&age=30';
 

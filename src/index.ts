@@ -10,9 +10,12 @@ const stringify = (input: Record<string, unknown>): string => {
         });
 
     const buildKeyValString = (input: [string, unknown][]) =>
-        input.map(
-            ([key, value]) => `${key}=${encodeURIComponent(String(value))}`
+        input.map(([key, value]) =>
+            value !== '' ? `${key}=${encodeURIComponent(String(value))}` : null
         );
+
+    const filterEmpty = (input: (string | null)[]) =>
+        input.filter((query) => query);
 
     const concatStrings = (input: string[]): string => input.join('&');
 
@@ -20,6 +23,7 @@ const stringify = (input: Record<string, unknown>): string => {
         toEntries,
         rejectNullish,
         buildKeyValString,
+        filterEmpty,
         concatStrings,
     ].reduce(reduceFn, input);
 
@@ -54,11 +58,22 @@ const parse = (input: string): Record<string, string | string[]> => {
             return [key, value];
         });
 
+    const filterEmptyKeys = (
+        input: [string, string | number | (string | number)[]][]
+    ) => input.filter(([key]) => key);
+
+    const parseEmptyValues = (
+        input: [string, string | number | (string | number)[]][]
+    ): [string, string | number | boolean | (string | number)[]][] =>
+        input.map(([key, value]) => [key, value ?? true]);
+
     const object = [
         splitPairs,
         parseToASCII,
         parseNums,
         parseArrays,
+        filterEmptyKeys,
+        parseEmptyValues,
         Object.fromEntries,
     ].reduce(reduceFn, input);
 
