@@ -47,4 +47,19 @@ describe('stringify', () => {
 
         expect(stringify(input)).toEqual(result);
     });
+
+    it('should split array values to multiple params', () => {
+        const input = {
+            name: 'Adam',
+            children: ['John', 'Sarah', 'David'],
+        };
+
+        const result = 'name=Adam&children=John&children=Sarah&children=David';
+
+        expect(
+            stringify(input, {
+                splitArrays: true,
+            })
+        ).toEqual(result);
+    });
 });

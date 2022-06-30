@@ -1,6 +1,19 @@
 const reduceFn = (v: any, fn: (val: any) => any) => fn(v);
 
-const stringify = (input: Record<string, unknown>): string => {
+interface StringifyOptions {
+    splitArrays: boolean;
+}
+
+const defaultStringifyOptions: StringifyOptions = {
+    splitArrays: false,
+};
+
+const stringify = (
+    input: Record<string, unknown>,
+    options: Partial<StringifyOptions> = {}
+): string => {
+    const _opts = { ...defaultStringifyOptions, ...options };
+
     const toEntries = (input: Record<string, unknown>) => Object.entries(input);
 
     const rejectNullish = (input: [string, unknown | null][]) =>
@@ -11,7 +24,13 @@ const stringify = (input: Record<string, unknown>): string => {
 
     const buildKeyValString = (input: [string, unknown][]) =>
         input.map(([key, value]) =>
-            value !== '' ? `${key}=${encodeURIComponent(String(value))}` : null
+            value !== ''
+                ? _opts.splitArrays && Array.isArray(value)
+                    ? value
+                          .map((v) => `${key}=${encodeURIComponent(String(v))}`)
+                          .join('&')
+                    : `${key}=${encodeURIComponent(String(value))}`
+                : null
         );
 
     const filterEmpty = (input: (string | null)[]) =>
@@ -67,8 +86,27 @@ const parse = (input: string): Record<string, string | string[]> => {
     ): [string, string | number | boolean | (string | number)[]][] =>
         input.map(([key, value]) => [key, value ?? true]);
 
+    const convertDuplicateKeysToArray = (
+        input: [string, string][]
+    ): [string, string][] => {
+        let arr: [string, string][] = [];
+
+        for (const [key, v] of input) {
+            const found = arr.find(([k]) => k === key);
+
+            if (found) {
+                found[1] += `,${v}`;
+            } else {
+                arr.push([key, v]);
+            }
+        }
+
+        return arr;
+    };
+
     const object = [
         splitPairs,
+        convertDuplicateKeysToArray,
         parseToASCII,
         parseNums,
         parseArrays,

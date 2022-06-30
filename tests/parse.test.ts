@@ -25,6 +25,12 @@ describe('parse', () => {
         expect(parse(input).children).toEqual(['John', 'Sarah', 'David']);
     });
 
+    it('should convert to an array if duplicate keys', () => {
+        const input = 'name=Adam&children=John&children=Sarah&children=David';
+
+        expect(parse(input).children).toEqual(['John', 'Sarah', 'David']);
+    });
+
     it('should convert numbers inside of an array if possible', () => {
         const input = 'childAges=20%2Cabc%2C40%2C50';
 
